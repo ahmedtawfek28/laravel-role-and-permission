@@ -19,4 +19,7 @@ class Permission extends \Spatie\Permission\Models\Permission
 			'product-delete'
 	    ];
 	}
+	protected $fillable = [
+		'name','guard_name'
+   ];
 }

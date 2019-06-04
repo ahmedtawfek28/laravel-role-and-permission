@@ -16,7 +16,7 @@
                     <!-- ============================================================== -->
                     <div class="row page-titles">
                         <div class="col-md-5 align-self-center">
-                            <h3 class="text-themecolor">Datatable</h3>
+                            <h3 class="text-themecolor">Role</h3>
                             <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Management Role</a></li>
@@ -97,12 +97,7 @@
                 <!-- ============================================================== -->
 
 
-
-
-
-{!! $roles->render() !!}
-@section('js')
-
 @endsection
+@section('js')
 
 @endsection

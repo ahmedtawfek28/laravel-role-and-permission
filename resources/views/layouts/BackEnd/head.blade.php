@@ -35,5 +35,8 @@
     <style>
     .sidebar-nav>ul>li>a.active {
     background: #ffffff;}
+    .sidebar-nav ul li a.active {
+    color: #20aee3;
+}
     </style>
 </head>

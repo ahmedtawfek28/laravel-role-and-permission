@@ -1,7 +1,7 @@
 @extends('layouts.BackEnd.master')
 
 @section('title','Show Role')
-
+ 
 @section('content')
 <div class="page-wrapper">
         <!-- ============================================================== -->

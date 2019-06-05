@@ -22,9 +22,9 @@
         <!-- Custom CSS -->
         {!! Html::style('BackEnd/main/css/style.css') !!}
         <!-- Dashboard 1 Page CSS -->
-        {!! Html::style('BackEnd/main/css/dashboard1.css') !!}
+        {!! Html::style('BackEnd/main/css/pages/dashboard1.css') !!}
         <!-- You can change the theme colors from here -->
-        {!! Html::style('BackEnd/main/css/default.css') !!}
+        {!! Html::style('BackEnd/main/css/colors/default.css') !!}
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

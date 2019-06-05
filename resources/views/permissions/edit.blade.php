@@ -1,31 +1,45 @@
-@extends('layouts.app')
+@extends('layouts.BackEnd.master')
 
+@section('title','Edit Permission')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit Permission</h2>
+<div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-themecolor"> Edit Permission</h3>
+                    <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('permissions.index') }}">Permission</a></li>
+                        <li class="breadcrumb-item active">Edit Permission</li>
+                    </ol>
+                </div>
+                <div class="">
+                    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+                </div>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('permissions.index') }}"> Back</a>
-            </div>
-        </div>
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
     </div>
+@endif
 
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-
+<div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
     <form action="{{ route('permissions.update',$permission->id) }}" method="POST">
     	@csrf
         @method('PUT')
@@ -47,5 +61,8 @@
 
     </form>
 
-
+</div>
+</div>    </div>
+</div>
+ 
 @endsection

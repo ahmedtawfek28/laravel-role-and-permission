@@ -181,7 +181,7 @@
                 @endsection
                 @section('css')
                     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-                    {!! Html::script('BackEnd/assets/node_modules/styleswitcher/jquery.checkAll.js') !!}
+                    {!! Html::script('BackEnd/assets/node_modules/styleswitcher/jquery.checkall.js') !!}
                     {!! Html::style('BackEnd/assets/node_modules/switchery/dist/switchery.min.css') !!}
                     <style>
                         /* The container */

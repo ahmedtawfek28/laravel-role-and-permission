@@ -1,22 +1,38 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 
 use App\Permissioncategory;
 use Illuminate\Http\Request;
 
+
 class PermissioncategoryController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    function __construct()
     {
-        $permissioncategories = Permissioncategory::latest()->get();
-        return view('permissioncategories.index',compact('permissioncategories'));
+                        $this->middleware('permission:permissioncategory-list');
+         $this->middleware('permission:permissioncategory-create', ['only' => ['create','store']]);
+         $this->middleware('permission:permissioncategory-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:permissioncategory-delete', ['only' => ['destroy']]);
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $permissioncategories = Permissioncategory::orderBy('id','DESC')->get();
+        return view('permissioncategories.index',compact('permissioncategories')) ->with('i');;
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,8 +41,9 @@ class PermissioncategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('permissioncategories.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,14 +53,18 @@ class PermissioncategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        request()->validate([
             'name' => 'required',
         ]);
-        $permissioncategories = new Permissioncategory();
-        $permissioncategories->name = $permissioncategories->name;
-        $permissioncategories->save();
-        return redirect()->route('permissioncategories.index')->with('success','Permissioncategory created successfully.');
+
+
+        Permissioncategory::create($request->all());
+
+        $request->guard_name='web';
+        return redirect()->route('permissioncategories.index')
+                        ->with('success','Permissioncategory created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -53,8 +74,9 @@ class PermissioncategoryController extends Controller
      */
     public function show(Permissioncategory $permissioncategory)
     {
-        //
+        return view('permissioncategories.show',compact('permissioncategory'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -62,11 +84,11 @@ class PermissioncategoryController extends Controller
      * @param  \App\Permissioncategory  $permissioncategory
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Permissioncategory $permissioncategory)
     {
-        $permissioncategories = Permissioncategory::find($id);
-        return view('permissioncategories.edit',compact('permissioncategories'));
+        return view('permissioncategories.edit',compact('permissioncategory'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -77,11 +99,17 @@ class PermissioncategoryController extends Controller
      */
     public function update(Request $request, Permissioncategory $permissioncategory)
     {
-        $permissioncategories = Permissioncategory::findOrFail($request->tag_id);
-        $permissioncategories->name = $request->name;
-        $permissioncategories->save();
-        return redirect()->route('permissioncategories.index') ->with('success','Permission updated successfully');
+         request()->validate([
+            'name' => 'required',
+        ]);
+
+
+        $permissioncategory->update($request->all());
+        $request->guard_name='web';
+        return redirect()->route('permissioncategories.index')
+                        ->with('success','Permissioncategory updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -89,10 +117,12 @@ class PermissioncategoryController extends Controller
      * @param  \App\Permissioncategory  $permissioncategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Permissioncategory $permissioncategory)
     {
-        $permissioncategories = Permissioncategory::findOrFail($request->tag_id);
-        $permissioncategories->delete();
-        return back()->with('success','Permission deleted successfully');
+        $permissioncategory->delete();
+
+
+        return redirect()->route('permissioncategories.index')
+                        ->with('success','Permissioncategory deleted successfully');
     }
 }

@@ -15,7 +15,17 @@
                                       
                             </a>
                         </li>
+                        @can('main-userManagement')
                         <li class="nav-small-cap">--- User Management </li>
+                        @can('permissioncategory-list')<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class=" icon-Lock-2"></i><span class="hide-menu">Permissioncategory</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                    @can('permissioncategory-create')
+                                    <li>{!! Html::linkRoute('permissioncategories.create','Add Permissioncategory') !!}</li>
+                                    @endcan
+                                <li>{!! Html::linkRoute('permissioncategories.index','Permissioncategories') !!}</li>
+                            </ul>
+                        </li>
+                        @endcan
                         @can('permission-list')<li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class=" icon-Lock-2"></i><span class="hide-menu">Permission</span></a>
                             <ul aria-expanded="false" class="collapse">
                                     @can('permission-create')
@@ -37,6 +47,7 @@
                                     <li>{!! Html::linkRoute('users.index','Users') !!}</li>
                             </ul>
                         </li>
+                        @endcan
                         <li class="nav-small-cap">--- Logout</li>
                         <li>
                              <a class="waves-effect waves-dark" href="{{ route('logout') }}" aria-expanded="false" onclick="event.preventDefault();

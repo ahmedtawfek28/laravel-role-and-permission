@@ -14,16 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/500', function () {
+    return view('page500');
+})->name('page500');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
     Route::resource('permissioncategories','PermissioncategoryController');
     Route::resource('permissions','PermissionController');
+    Route::resource('category','CategoryController');
+
 });

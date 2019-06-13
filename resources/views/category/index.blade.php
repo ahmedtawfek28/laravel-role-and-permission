@@ -1,6 +1,6 @@
 @extends('layouts.BackEnd.master')
 
-@section('title','Management Role')
+@section('title','Management Categories')
 
 @section('content')
     <!-- ============================================================== -->
@@ -16,17 +16,20 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor">Role</h3>
+                    <h3 class="text-themecolor">Category</h3>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Management Role</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Management Category</a></li>
                     </ol>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 margin-tb">
                         <div class="pull-left">
-                            @can('role-create')
-                                <a class="btn btn-info" href="{{ route('roles.create') }}"> Create New Role</a>
+                            @can('category-create')
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i
+                                        class="fa fa-plus-circle"></i> Create New
+                                </button>
+
                             @endcan
                         </div>
                     </div>
@@ -49,62 +52,80 @@
                         <div class="card-body">
                             <div class="table-responsive m-t-40">
                                 <table id="myTable" class="table table-bordered table-striped">
+
                                     <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
+                                        <th>S.No</th>
+                                        <th>Title</th>
+                                        <th>Slug</th>
+
+                                        <th>Image</th>
+                                        <th>created_AT</th>
+
                                         <th>Action</th>
                                     </tr>
+
                                     </thead>
+
                                     <tbody>
-                                    @foreach ($roles as $key => $role)
+
+                                    @foreach($categories as $Category)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            <td>
-                                                <center>{{ $role->name }}</center>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{$Category->title}}</td>
+                                            <td>{{$Category->slug}}</td>
+
+                                            <td>{{substr($Category->image,0,25)}}
+                                                @if(strlen($Category->image)>25)
+                                                    [..]
+                                                @endif
+
+
                                             </td>
+                                            <td>{{$Category->updated_at}}</td>
                                             <td>
-                                                <center>
-                                                    <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
-                                                    @can('role-edit')
-                                                        <a class="btn btn-primary"
-                                                           href="{{ route('roles.edit',$role->id) }}">Edit</a>
-                                                    @endcan
-                                                    @can('role-delete')
-                                                        {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
-                                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                                                        {!! Form::close() !!}
-                                                    @endcan
-                                                </center>
-                                            </td>
+                                                @can('category-edit')
+                                                    <button class="btn btn-info" data-mytitle="{{$Category->title}}"
+                                                            data-myimage="{{$Category->image}}"
+                                                            data-myid={{$Category->id}} data-toggle="modal"
+                                                            data-target="#edit">Edit
+                                                    </button>
+                                                @endcan
+                                                @can('category-delete')
+
+                                                    <button class="btn btn-danger"
+                                                            data-myid={{$Category->id}} data-toggle="modal"
+                                                            data-target="#delete">Delete
+                                                    </button>
+                                                @endcan  </td>
                                         </tr>
+
                                     @endforeach
+
                                     </tbody>
-                                    <thead>
+                                    <tfoot>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
+                                        <th>S.No</th>
+                                        <th>Title</th>
+                                        <th>Slug</th>
+                                        <th>Image</th>
+                                        <th>created_AT</th>
                                         <th>Action</th>
                                     </tr>
-                                    </thead>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-
-        </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-
-
 @endsection
 @section('js')
-
+    {!! Html::script('BackEnd/assets/node_modules/bootstrap/js/popper.min.js') !!}
+@endsection
+@section('model')
+    @include('category.model')
+@endsection
+@section('ajax')
+    @include('category.ajax')
 @endsection

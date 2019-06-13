@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2019 at 12:29 PM
+-- Generation Time: Jun 14, 2019 at 01:28 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -21,6 +21,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `mainblog`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'default.png',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -43,7 +58,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2014_10_12_100000_create_password_resets_table', 1),
 (15, '2019_05_31_205901_create_permission_tables', 1),
 (16, '2019_05_31_210029_create_products_table', 1),
-(17, '2019_06_04_153919_create_permissioncategories_table', 2);
+(17, '2019_06_04_153919_create_permissioncategories_table', 2),
+(20, '2019_06_10_031431_create_categories_table', 3);
 
 -- --------------------------------------------------------
 
@@ -107,11 +123,12 @@ CREATE TABLE `permissioncategories` (
 --
 
 INSERT INTO `permissioncategories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(7, 'main', '2019-06-06 09:46:04', '2019-06-06 09:46:04'),
-(8, 'permission', '2019-06-06 09:46:10', '2019-06-06 09:46:10'),
-(9, 'permissioncategory', '2019-06-06 09:46:19', '2019-06-06 09:46:19'),
-(11, 'role', '2019-06-06 09:46:39', '2019-06-06 09:46:39'),
-(13, 'product', '2019-06-07 22:16:21', '2019-06-07 22:16:21');
+(39, 'main', '2019-06-12 11:24:24', '2019-06-12 11:24:24'),
+(40, 'permissioncategory', '2019-06-12 11:24:26', '2019-06-12 11:24:26'),
+(41, 'permission', '2019-06-12 11:24:28', '2019-06-12 11:24:28'),
+(42, 'role', '2019-06-12 11:24:29', '2019-06-12 11:24:29'),
+(51, 'user', '2019-06-13 06:06:06', '2019-06-13 06:06:06'),
+(52, 'category', '2019-06-13 06:07:06', '2019-06-13 06:07:06');
 
 -- --------------------------------------------------------
 
@@ -122,7 +139,7 @@ INSERT INTO `permissioncategories` (`id`, `name`, `created_at`, `updated_at`) VA
 CREATE TABLE `permissions` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'web',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -148,7 +165,16 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 (22, 'product-list', 'web', '2019-06-07 22:16:22', '2019-06-07 22:16:22'),
 (23, 'product-create', 'web', '2019-06-07 22:16:29', '2019-06-07 22:16:29'),
 (24, 'product-update', 'web', '2019-06-07 22:16:42', '2019-06-07 22:16:42'),
-(25, 'product-delete', 'web', '2019-06-07 22:16:54', '2019-06-07 22:16:54');
+(25, 'product-delete', 'web', '2019-06-07 22:16:54', '2019-06-07 22:16:54'),
+(26, 'category-list', 'web', '2019-06-11 17:48:59', '2019-06-11 17:57:11'),
+(27, 'category-create', 'web', '2019-06-11 17:49:19', '2019-06-11 17:57:02'),
+(28, 'category-edit', 'web', '2019-06-11 17:49:38', '2019-06-11 18:59:10'),
+(29, 'category-delete', 'web', '2019-06-11 17:49:54', '2019-06-11 17:56:06'),
+(30, 'main-dataManagement', 'web', '2019-06-11 18:02:08', '2019-06-11 18:02:08'),
+(42, 'user-list', 'web', '2019-06-13 06:06:06', '2019-06-13 06:06:06'),
+(43, 'user-create', 'web', '2019-06-13 06:06:06', '2019-06-13 06:06:06'),
+(44, 'user-edit', 'web', '2019-06-13 06:06:06', '2019-06-13 06:06:06'),
+(45, 'user-delete', 'web', '2019-06-13 06:06:06', '2019-06-13 06:06:06');
 
 -- --------------------------------------------------------
 
@@ -218,33 +244,32 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 2),
 (1, 3),
 (2, 2),
-(2, 3),
 (3, 2),
-(3, 3),
 (4, 2),
-(4, 3),
 (9, 2),
-(9, 3),
 (10, 2),
-(10, 3),
 (11, 2),
-(11, 3),
 (12, 2),
-(12, 3),
 (14, 2),
 (14, 3),
 (15, 2),
-(15, 3),
 (16, 2),
-(16, 3),
 (17, 2),
-(17, 3),
 (18, 2),
-(18, 3),
-(22, 2),
-(23, 2),
-(24, 2),
-(25, 2);
+(26, 2),
+(26, 3),
+(27, 2),
+(27, 3),
+(28, 2),
+(28, 3),
+(29, 2),
+(29, 3),
+(30, 2),
+(30, 3),
+(42, 2),
+(43, 2),
+(44, 2),
+(45, 2);
 
 -- --------------------------------------------------------
 
@@ -268,12 +293,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Ahmed Tawfek', 'admin@admin.com', NULL, '$2y$10$LEQ4VQSvI8ZLN1pVn99p3ucpSye0fRmPo3vMe4g6MO10iIVeGLcZS', NULL, '2019-05-31 20:08:08', '2019-05-31 20:08:08'),
-(5, 'user', 'user@user.com', NULL, '$2y$10$TQAii2BTpgOggZyk63aBWuG4x1/Umjtz4I.74gVb7IdG/9FCqRXaC', NULL, '2019-05-31 20:21:49', '2019-05-31 20:21:49');
+(4, 'Ahmed Tawfek', 'admin@admin.com', NULL, '$2y$10$LEQ4VQSvI8ZLN1pVn99p3ucpSye0fRmPo3vMe4g6MO10iIVeGLcZS', 'hW4Chhn4TRWPtHOQL1Dmi66mYTOrHqrqcYFEX9auoA8pujAIKeyFjjlmNW3V', '2019-05-31 20:08:08', '2019-05-31 20:08:08'),
+(5, 'user', 'user@user.com', NULL, '$2y$10$TQAii2BTpgOggZyk63aBWuG4x1/Umjtz4I.74gVb7IdG/9FCqRXaC', '7SB4erkNZgUGnvL5c6sN51CJTL0ICLWUkpdqO3sLATl3XMYS2qpBA85M0bwi', '2019-05-31 20:21:49', '2019-05-31 20:21:49');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -344,22 +375,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `permissioncategories`
 --
 ALTER TABLE `permissioncategories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -371,7 +408,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

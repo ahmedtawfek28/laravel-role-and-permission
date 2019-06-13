@@ -54,20 +54,40 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
-            'name' => 'required',
+//        request()->validate([
+//            'name' => 'required',
+//        ]);
+//
+//        $category_name = mb_split("-", $request->name);
+//        $permissionCategory = new PermissionCategory();
+//        $permissionCategory->name = $category_name[0];
+//        $categories_count = PermissionCategory::where('name', '=', $category_name[0])->count();
+//        if ($categories_count == 0) {
+//
+//            $permissionCategory->save();
+//        }
+//        Permission::create($request->all());
+//        $request->guard_name = 'web';
+//        return redirect()->route('permissions.index')
+//            ->with('success', 'Permission created successfully.');
+        $request->validate([
+            'addmore.*.name' => 'required',
+
         ]);
 
-        $category_name = mb_split("-", $request->name);
-        $permissionCategory = new PermissionCategory();
-        $permissionCategory->name = $category_name[0];
-        $categories_count = PermissionCategory::where('name', '=', $category_name[0])->count();
-        if ($categories_count == 0) {
+        foreach ($request->addmore as $key => $value) {
 
-            $permissionCategory->save();
+            Permission::create($value);
+            $category_name = mb_split("-", $value['name']);
+            $permissionCategory = new PermissionCategory();
+            $permissionCategory->name = $category_name[0];
+            $categories_count = PermissionCategory::where('name', '=', $category_name[0])->count();
+            if ($categories_count == 0) {
+
+                $permissionCategory->save();
+            }
         }
-        Permission::create($request->all());
-        $request->guard_name = 'web';
+
         return redirect()->route('permissions.index')
             ->with('success', 'Permission created successfully.');
     }

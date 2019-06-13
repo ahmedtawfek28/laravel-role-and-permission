@@ -26,7 +26,7 @@
                                 <div class="col-lg-12 margin-tb">
                                     <div class="pull-left">
                                     @can('permission-create')
-                                        <a class="btn btn-info" href="{{ route('permissions.create') }}"> Create New Role</a>
+                                        <a class="btn btn-info" href="{{ route('permissions.create') }}"> Create New Permissions</a>
                                         @endcan
                                     </div>
                                 </div>

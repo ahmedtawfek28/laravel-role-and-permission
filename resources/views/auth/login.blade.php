@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -77,8 +77,8 @@
             </div>
         </div>
     </div>
-@endsection
-   {{-- <!DOCTYPE html>
+@endsection--}}
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -126,7 +126,7 @@
          style="background-image:url({{asset('BackEnd/assets/images/background/login-register.jpg')}});">
     <div class="login-box card">
         <div class="card-body">
-            <form class="form-horizontal form-material" id="loginform" action="index.html">
+            <form class="form-horizontal form-material" method="POST" action="{{ route('login') }}">
                 <a href="javascript:void(0)" class="text-center db">
                     {!! Html::image('BackEnd/assets/images/logo-icon.png',"Home") !!}
                     <br/>
@@ -181,38 +181,20 @@
                                         class="fa fa-lock m-r-5"></i>
                                     Forgot pwd?
                                 </a>
-            @endif
-        </div>
+                            @endif
+                        </div>
 
 
-        <div class="form-group text-center m-t-20">
-        </div>
+                        <div class="form-group text-center m-t-20">
+                        </div>
                     </div>
                     <div class="col-xs-12">
                         <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase btn-rounded">
-                        {{ __('Login') }}
+                            {{ __('Login') }}
                         </button>
                     </div>
                 </form>
 
-
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                        <div class="social"><a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip"
-                                               title="Login with Facebook"> <i aria-hidden="true"
-                                                                               class="fa fa-facebook"></i> </a> <a
-                                href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip"
-                                title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group m-b-0">
-                    <div class="col-sm-12 text-center">
-                        Don't have an account? <a href="pages-register2.html" class="text-primary m-l-5"><b>Sign Up</b></a>
-                    </div>
-                </div>
-            </form>
             <form class="form-horizontal" id="recoverform" action="index.html">
                 <div class="form-group ">
                     <div class="col-xs-12">
@@ -267,4 +249,4 @@
 </body>
 
 </html>
---}}
+

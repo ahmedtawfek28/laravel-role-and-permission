@@ -13,7 +13,7 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor"> Create New Role</h3>
+                    <h3 class="text-themecolor"> Create New User</h3>
                     <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('users.index') }}">User</a></li>

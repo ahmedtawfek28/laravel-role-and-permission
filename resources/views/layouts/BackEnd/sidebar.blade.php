@@ -72,15 +72,22 @@
                                     class=" icon-Folder-Organizing"></i><span class="hide-menu">Category</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('category-create')
-                                    {{--                                    <li><button  data-target="#categoryModel">Add Category</button></li>--}}
-                                    <li>
-                                        <button data-toggle="modal" data-target="#myModal"
-                                                style="border: none;padding: 0;background: none;padding: 7px 35px 7px 15px;color: #8d97ad;display: block;font-size: 15px;font-weight: 400;}">
-                                            Add Category
-                                        </button>
-                                    </li>
+
+                                    <li>{!! Html::linkRoute('category.create','Add Category') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('category.index','Categories') !!}</li>
+                                <li>{!! Html::linkRoute('category.index','Category') !!}</li>
+                            </ul>
+                        </li>
+                    @endcan
+                    @can('subcategory-list')
+                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                                    class="icon-Folder-Open"></i><span class="hide-menu">SubCategory</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                @can('subcategory-create')
+
+                                    <li>{!! Html::linkRoute('subcategory.create','Add SubCategory') !!}</li>
+                                @endcan
+                                <li>{!! Html::linkRoute('subcategory.index','SubCategory') !!}</li>
                             </ul>
                         </li>
                     @endcan

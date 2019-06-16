@@ -27,5 +27,6 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('permissioncategories','PermissioncategoryController');
     Route::resource('permissions','PermissionController');
     Route::resource('category','CategoryController');
+    Route::resource('subcategory','SubCategoryController');
 
 });

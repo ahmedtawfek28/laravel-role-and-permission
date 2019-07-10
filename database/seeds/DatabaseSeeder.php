@@ -2,9 +2,11 @@
 
 use Illuminate\Database\Seeder;
 use App\Permission;
+use App\Permissioncategory;
 use App\Role;
 use App\User;
 use App\Post;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -14,19 +16,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         // Ask for confirmation to refresh migration
+        // Ask for confirmation to refresh migration
         if ($this->command->confirm('Do you wish to refresh migration before seeding, Make sure it will clear all old data ?')) {
             $this->command->call('migrate:refresh');
             $this->command->warn("Data deleted, starting from fresh database.");
         }
 
         // Seed the default permissions
-        $permissions = Permission::defaultPermissions();
+
+        $permissions = $this->defaultPermissions();
 
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
+        // Seed the default Permissioncategory
+        $cat_permissions = $this->defaultPermissioncategory();
 
+        foreach ($cat_permissions as $cat_permission) {
+            Permissioncategory::firstOrCreate(['name' => $cat_permission]);
+        }
         $this->command->info('Default Permissions added.');
 
         // Ask to confirm to assign admin or user role
@@ -39,10 +47,10 @@ class DatabaseSeeder extends Seeder
             $rolesArray = explode(',', $roles);
 
             // add roles
-            foreach($rolesArray as $role) {
+            foreach ($rolesArray as $role) {
                 $role = Role::firstOrCreate(['name' => trim($role)]);
 
-                if( $role->name == 'Admin' ) {
+                if ($role->name == 'Admin') {
                     // assign all permissions to admin role
                     $role->permissions()->sync(Permission::all());
                     $this->command->info('Admin will have full rights');
@@ -62,7 +70,7 @@ class DatabaseSeeder extends Seeder
             $this->command->info('By default, User role added.');
         }
 
-      
+
     }
 
     /**
@@ -75,11 +83,21 @@ class DatabaseSeeder extends Seeder
         $user = factory(User::class)->create();
         $user->assignRole($role->name);
 
-        if( $role->name == 'Admin' ) {
+        if ($role->name == 'Admin') {
             $this->command->info('Admin login details:');
-            $this->command->warn('Username : '.$user->email);
-            $this->command->warn('Password : "secret"');
+            $this->command->warn('Username : ' . $user->email);
+            $this->command->warn('Password : "123123123"');
         }
-    
+
+    }
+
+    private function defaultPermissions()
+    {
+        return ['role-list', 'role-create', 'role-edit', 'role-delete', 'permission-list', 'permission-create', 'permission-edit', 'permission-delete', 'main-userManagement', 'main-dataManagement', 'permissioncategory-list', 'permissioncategory-create', 'permissioncategory-edit', 'permissioncategory-delete', 'product-list', 'product-create', 'product-update', 'product-delete', 'category-list', 'category-create', 'category-edit', 'category-delete', 'category-showdetails', 'subcategory-list', 'subcategory-create', 'subcategory-edit', 'subcategory-delete', 'subcategory-showdetails', 'user-list', 'user-create', 'user-edit', 'user-delete',];
+    }
+
+    private function defaultPermissioncategory()
+    {
+        return ['main', 'permissioncategory', 'permission', 'role', 'user', 'category', 'subcategory'];
     }
 }

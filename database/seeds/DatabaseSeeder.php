@@ -4,7 +4,8 @@ use Illuminate\Database\Seeder;
 use App\Permission;
 use App\Permissioncategory;
 use App\Role;
-use App\User;
+use App\Admin;
+use App\Customer;
 use App\Post;
 
 class DatabaseSeeder extends Seeder
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
         if ($this->command->confirm('Create Roles for user, default is admin and user? [y|N]', true)) {
 
             // Ask for roles from input
-            $roles = $this->command->ask('Enter roles in comma separate format.', 'Admin,User');
+            $roles = $this->command->ask('Enter roles in comma separate format.', 'Admin');
 
             // Explode roles
             $rolesArray = explode(',', $roles);
@@ -80,7 +81,8 @@ class DatabaseSeeder extends Seeder
      */
     private function createUser($role)
     {
-        $user = factory(User::class)->create();
+        $user = factory(Admin::class)->create();
+        factory(Customer::class)->create();
         $user->assignRole($role->name);
 
         if ($role->name == 'Admin') {

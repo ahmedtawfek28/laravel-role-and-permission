@@ -17,21 +17,21 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard = "student")->check() && !Auth::guard($guard = "teacher")->check()) {
-            if ($request->path() == "teacher/login") {
+        if (Auth::guard($guard = "customer")->check() && !Auth::guard($guard = "admin")->check()) {
+            if ($request->path() == "admin/login") {
                 return $next($request);
             } else
-                return redirect('/student/home');
-        } elseif (Auth::guard($guard = "teacher")->check() && !Auth::guard($guard = "student")->check()) {
-            if ($request->path() == "student/login") {
+                return redirect('/customer/home');
+        } elseif (Auth::guard($guard = "admin")->check() && !Auth::guard($guard = "customer")->check()) {
+            if ($request->path() == "customer/login") {
                 return $next($request);
             } else
-                return redirect('/teacher/home');
-        } elseif (Auth::guard($guard = "teacher")->check() && Auth::guard($guard = "student")->check()) {
-            if ($request->path() == "student/login") {
-                return redirect('/student/home');
+                return redirect('/admin/home');
+        } elseif (Auth::guard($guard = "admin")->check() && Auth::guard($guard = "customer")->check()) {
+            if ($request->path() == "customer/login") {
+                return redirect('/customer/home');
             } else
-                return redirect('/teacher/home');
+                return redirect('/admin/home');
         }
         return $next($request);
     }

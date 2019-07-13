@@ -19,26 +19,26 @@ Route::get('/500', function () {
 })->name('page500');
 
 Auth::routes();
-Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function() {
 
 
 });
 
 /**
- * teacher login route
+ * admin login route
  */
-Route::get('/teacher/login', 'Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
-Route::post('/teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login.post');
-Route::post('/teacher/logout', 'Auth\TeacherLoginController@logout')->name('teacher.logout');
+Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.post');
+Route::post('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
 
 /**
  * route only for teacher profile
  */
-Route::group(['middleware'=>'teacher'], function() {
-
-    Route::get('/teacher/home', 'Teacher\HomeController@index');
+Route::group(['as' => 'Admin.', 'prefix' => 'Admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
+//Route::group(['middleware'=>'admin'], function() {
+//    Route::get('home', 'HomeController@index');
+    Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
@@ -52,16 +52,16 @@ Route::group(['middleware'=>'teacher'], function() {
 /**
  * student login route
  */
-Route::get('/student/login', 'Auth\StudentLoginController@showLoginForm')->name('student.login');
-Route::post('/student/login', 'Auth\StudentLoginController@login')->name('student.login.post');
-Route::post('/student/logout', 'Auth\StudentLoginController@logout')->name('student.logout');
+Route::get('/customer/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
+Route::post('/customer/login', 'Auth\CustomerLoginController@login')->name('customer.login.post');
+Route::post('/customer/logout', 'Auth\CustomerLoginController@logout')->name('customer.logout');
 
 
 /**
  * route only for student profile
  */
-Route::group(['middleware'=>'student'], function() {
+Route::group(['middleware'=>'customer'], function() {
 
-    Route::get('/student/home', 'Student\HomeController@index');
+    Route::get('/customer/home', 'Customer\HomeController@index');
 
 });

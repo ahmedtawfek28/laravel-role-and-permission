@@ -63,8 +63,8 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
-        'teacher' => \App\Http\Middleware\RedirectIfNotTeacher::class,
-        'student' => \App\Http\Middleware\RedirectIfNotStudent::class,
+        'admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+        'customer' => \App\Http\Middleware\RedirectIfNotCustomer::class,
         ];
 
     /**

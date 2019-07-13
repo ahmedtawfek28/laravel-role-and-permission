@@ -9,7 +9,7 @@
             <ul id="sidebarnav">
                 <li class="nav-small-cap">--- PERSONAL</li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('home') }}" aria-expanded="false"><i
+                    <a class="waves-effect waves-dark" href="{{ route('Admin.home') }}" aria-expanded="false"><i
                             class="icon-Car-Wheel">
                         </i><span class="hide-menu">
                                      Dashboard
@@ -23,9 +23,9 @@
                                     class=" icon-Lock-2"></i><span class="hide-menu">Permissioncategory</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('permissioncategory-create')
-                                    <li>{!! Html::linkRoute('permissioncategories.create','Add Permissioncategory') !!}</li>
+                                    <li>{!! Html::linkRoute('Admin.permissioncategories.create','Add Permissioncategory') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('permissioncategories.index','Permissioncategories') !!}</li>
+                                <li>{!! Html::linkRoute('Admin.permissioncategories.index','Permissioncategories') !!}</li>
                             </ul>
                         </li>
                     @endcan
@@ -34,9 +34,9 @@
                                     class=" icon-Lock-2"></i><span class="hide-menu">Permission</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('permission-create')
-                                    <li>{!! Html::linkRoute('permissions.create','Add Permission') !!}</li>
+                                    <li>{!! Html::linkRoute('Admin.permissions.create','Add Permission') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('permissions.index','Permissions') !!}</li>
+                                <li>{!! Html::linkRoute('Admin.permissions.index','Permissions') !!}</li>
                             </ul>
                         </li>
                     @endcan
@@ -46,9 +46,9 @@
                                     class="icon-Lock-User"></i><span class="hide-menu">Role</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('role-create')
-                                    <li>{!! Html::linkRoute('roles.create','Add Role') !!}</li>
+                                    <li>{!! Html::linkRoute('Admin.roles.create','Add Role') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('roles.index','Roles') !!}</li>
+                                <li>{!! Html::linkRoute('Admin.roles.index','Roles') !!}</li>
                             </ul>
                         </li>
                     @endcan
@@ -58,9 +58,9 @@
                                     class=" icon-Administrator"></i><span class="hide-menu">User</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('user-create')
-                                    <li>{!! Html::linkRoute('users.create','Add User') !!}</li>
+                                    <li>{!! Html::linkRoute('Admin.users.create','Add User') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('users.index','Users') !!}</li>
+                                <li>{!! Html::linkRoute('Admin.users.index','Users') !!}</li>
                             </ul>
                         </li>
                     @endcan
@@ -73,9 +73,9 @@
                             <ul aria-expanded="false" class="collapse">
                                 @can('category-create')
 
-                                    <li>{!! Html::linkRoute('category.create','Add Category') !!}</li>
+                                    <li>{!! Html::linkRoute('Admin.category.create','Add Category') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('category.index','Category') !!}</li>
+                                <li>{!! Html::linkRoute('Admin.category.index','Category') !!}</li>
                             </ul>
                         </li>
                     @endcan
@@ -85,9 +85,9 @@
                             <ul aria-expanded="false" class="collapse">
                                 @can('subcategory-create')
 
-                                    <li>{!! Html::linkRoute('subcategory.create','Add SubCategory') !!}</li>
+                                    <li>{!! Html::linkRoute('Admin.subcategory.create','Add SubCategory') !!}</li>
                                 @endcan
-                                <li>{!! Html::linkRoute('subcategory.index','SubCategory') !!}</li>
+                                <li>{!! Html::linkRoute('Admin.subcategory.index','SubCategory') !!}</li>
                             </ul>
                         </li>
                     @endcan

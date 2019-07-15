@@ -95,7 +95,7 @@
 
                 <li class="nav-small-cap">--- Logout</li>
                 <li>
-                    <a class="waves-effect waves-dark" href="{{ route('logout') }}" aria-expanded="false" onclick="event.preventDefault();
+                    <a class="waves-effect waves-dark" href="{{ route('admin.logout') }}" aria-expanded="false" onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
 
                         <i class="mdi mdi-logout">
@@ -103,7 +103,7 @@
                                      Logout
 
                         </span></a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </li>

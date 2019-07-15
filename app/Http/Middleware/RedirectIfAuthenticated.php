@@ -26,12 +26,12 @@ class RedirectIfAuthenticated
             if ($request->path() == "customer/login") {
                 return $next($request);
             } else
-                return redirect('/admin/home');
+                return redirect('/Admin/dashboard');
         } elseif (Auth::guard($guard = "admin")->check() && Auth::guard($guard = "customer")->check()) {
             if ($request->path() == "customer/login") {
                 return redirect('/customer/home');
             } else
-                return redirect('/admin/home');
+                return redirect('/Admin/dashboard');
         }
         return $next($request);
     }

@@ -126,7 +126,7 @@
          style="background-image:url({{asset('BackEnd/assets/images/background/login-register.jpg')}});">
     <div class="login-box card">
         <div class="card-body">
-            <form class="form-horizontal form-material" method="POST" action="{{ route('login') }}">
+            <form class="form-horizontal form-material" method="POST" action="{{ route('admin.login') }}">
                 <a href="javascript:void(0)" class="text-center db">
                     {!! Html::image('BackEnd/assets/images/logo-icon.png',"Home") !!}
                     <br/>

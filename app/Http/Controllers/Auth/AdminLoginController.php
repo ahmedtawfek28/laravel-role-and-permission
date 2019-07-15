@@ -26,7 +26,7 @@ class AdminLoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/home';
+    protected $redirectTo = 'Admin/dashboard';
 
     public function __construct()
     {

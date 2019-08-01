@@ -165,29 +165,19 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="form-group m-t-40">
+                        <div class="col-xs-12">
+                            &nbsp&nbsp&nbsp
+                            <input class="form-check-input" type="checkbox" name="remember"
+                                   id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <div class="checkbox checkbox-primary pull-left p-t-0">
-                                <input class="form-check-input" type="checkbox" name="remember"
-                                       id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
 
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                            @if (Route::has('password.request'))
-                                <a class="text-dark pull-right" href="{{ route('password.request') }}"><i
-                                        class="fa fa-lock m-r-5"></i>
-                                    Forgot pwd?
-                                </a>
-                            @endif
-                        </div>
-
-
-                        <div class="form-group text-center m-t-20">
                         </div>
                     </div>
+
                     <div class="col-xs-12">
                         <button type="submit" class="btn btn-info btn-lg btn-block text-uppercase btn-rounded">
                             {{ __('Login') }}

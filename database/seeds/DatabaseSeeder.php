@@ -7,6 +7,7 @@ use App\Role;
 use App\Admin;
 use App\Customer;
 use App\Post;
+use App\Option;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,9 +25,11 @@ class DatabaseSeeder extends Seeder
         }
 
         // Seed the default permissions
-
+        $options =$this->defaultOption();
         $permissions = $this->defaultPermissions();
-
+        foreach ($options as $option) {
+            Option::firstOrCreate(['key' => $option],['value' => $option]);
+        }
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
@@ -95,11 +98,16 @@ class DatabaseSeeder extends Seeder
 
     private function defaultPermissions()
     {
-        return ['role-list', 'role-create', 'role-edit', 'role-delete', 'permission-list', 'permission-create', 'permission-edit', 'permission-delete', 'main-userManagement', 'main-dataManagement', 'permissioncategory-list', 'permissioncategory-create', 'permissioncategory-edit', 'permissioncategory-delete', 'product-list', 'product-create', 'product-update', 'product-delete', 'category-list', 'category-create', 'category-edit', 'category-delete', 'category-showdetails', 'subcategory-list', 'subcategory-create', 'subcategory-edit', 'subcategory-delete', 'subcategory-showdetails', 'user-list', 'user-create', 'user-edit', 'user-delete',];
+        return ['role-list', 'role-create', 'role-edit', 'role-delete', 'permission-list', 'permission-create', 'permission-edit', 'permission-delete', 'main-userManagement', 'main-dataManagement', 'permissioncategory-list', 'permissioncategory-create', 'permissioncategory-edit', 'permissioncategory-delete', 'product-list', 'product-create', 'product-update', 'product-delete', 'category-list', 'category-create', 'category-edit', 'category-delete', 'category-showdetails', 'subcategory-list', 'subcategory-create', 'subcategory-edit', 'subcategory-delete', 'subcategory-showdetails', 'user-list', 'user-create', 'user-edit', 'user-delete','main-site','option-list', 'option-create', 'option-edit', 'option-delete'];
     }
 
     private function defaultPermissioncategory()
     {
-        return ['main', 'permissioncategory', 'permission', 'role', 'user', 'category', 'subcategory'];
+        return ['main', 'permissioncategory', 'permission', 'role', 'user', 'category', 'subcategory','option'];
     }
+    private function defaultOption()
+    {
+        return  ['website_name_ar','website_name_en','logo-image','facebook','twitter','google','about_us','contact_us'];
+    }
+
 }

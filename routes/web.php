@@ -14,27 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/500', function () {
     return view('page500');
 })->name('page500');
 
-// Authentication Routes...
-// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-// Route::post('login', 'Auth\LoginController@login');
-// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-// Registration Routes...
-// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// Route::post('register', 'Auth\RegisterController@register');
-
-// Password Reset Routes...
-// Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-// Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-// Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-// Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-
 /**
- * admin login route
+ * Admin login route
  */
 Route::get('/admin/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
 Route::post('/admin/login', 'Auth\AdminLoginController@login')->name('admin.login.post');
@@ -42,24 +28,27 @@ Route::post('/admin/logout', 'Auth\AdminLoginController@logout')->name('admin.lo
 
 
 /**
- * route only for teacher profile
+ * route only for Admin profile
  */
 Route::group(['as' => 'Admin.', 'prefix' => 'Admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'admin']], function () {
-//Route::group(['middleware'=>'admin'], function() {
-//    Route::get('home', 'HomeController@index');
+
     Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
     Route::resource('products','ProductController');
     Route::resource('permissioncategories','PermissioncategoryController');
     Route::resource('permissions','PermissionController');
+    Route::resource('options','OptionController');
+    Route::get('web_setting','WebSettingController@index')->name('websetting.index');
+    Route::put('web_setting','WebSettingController@update')->name('web_setting.update');
     Route::resource('category','CategoryController');
     Route::resource('subcategory','SubCategoryController');
+
 });
 
 
 /**
- * student login route
+ * customer login route
  */
 Route::get('/customer/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
 Route::post('/customer/login', 'Auth\CustomerLoginController@login')->name('customer.login.post');
@@ -67,7 +56,7 @@ Route::post('/customer/logout', 'Auth\CustomerLoginController@logout')->name('cu
 
 
 /**
- * route only for student profile
+ * route only for customer profile
  */
 Route::group(['middleware'=>'customer'], function() {
 

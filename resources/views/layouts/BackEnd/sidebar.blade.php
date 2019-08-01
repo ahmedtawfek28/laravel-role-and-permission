@@ -92,7 +92,22 @@
                         </li>
                     @endcan
                 @endcan
+                @can('main-site')
+                    <li class="nav-small-cap">--- Site Data</li>
+                    @can('option-list')
+                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">Option</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                @can('option-create')
 
+                                    <li>{!! Html::linkRoute('Admin.options.create','Add Option') !!}</li>
+                                @endcan
+                                <li>{!! Html::linkRoute('Admin.options.index','Option') !!}</li>
+                            </ul>
+                        </li>
+                    @endcan
+
+                @endcan
                 <li class="nav-small-cap">--- Logout</li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin.logout') }}" aria-expanded="false" onclick="event.preventDefault();

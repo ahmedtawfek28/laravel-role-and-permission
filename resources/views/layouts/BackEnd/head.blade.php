@@ -8,7 +8,7 @@
         <meta name="author" content="">
         <!-- Favicon icon -->
         {!! Html::favicon('BackEnd/assets/images/favicon.png') !!}
-        <title>@yield('title')</title>
+        <title>{{ option('Website_Name_En') }} _ @yield('title')</title>
         <!-- Bootstrap Core CSS -->
         {!! Html::style('BackEnd/assets/node_modules/bootstrap/css/bootstrap.min.css') !!}
         {!! Html::style('BackEnd/assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css') !!}

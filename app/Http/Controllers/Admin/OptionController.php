@@ -29,7 +29,7 @@ class OptionController extends Controller
     public function index(Request $request)
     {
         $options = Option::orderBy('id', 'DESC')->get();
-        return view('Admin.options.index', compact('options'))->with('i');;
+        return view('Admin.options.index', compact('options'))->with('i');
     }
 
 

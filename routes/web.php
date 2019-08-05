@@ -39,6 +39,8 @@ Route::group(['as' => 'Admin.', 'prefix' => 'Admin', 'namespace' => 'Admin', 'mi
     Route::resource('permissioncategories','PermissioncategoryController');
     Route::resource('permissions','PermissionController');
     Route::resource('options','OptionController');
+    Route::resource('localization','LocalizationController');
+    Route::get('test','LocalizationController@test')->name('localization.test');
     Route::get('web_setting','WebSettingController@index')->name('websetting.index');
     Route::put('web_setting','WebSettingController@update')->name('web_setting.update');
     Route::resource('category','CategoryController');

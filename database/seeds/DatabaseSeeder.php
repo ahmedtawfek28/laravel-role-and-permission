@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Ask for confirmation to refresh migration
-        if ($this->command->confirm('Do you wish to refresh migration before seeding, Make sure it will clear all old data ?')) {
+        if ($this->command->confirm('Do you wish to refresh migration before seeding, Make sure it will clear all old data ?', true)) {
             $this->command->call('migrate:refresh');
             $this->command->warn("Data deleted, starting from fresh database.");
         }
@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
 
     private function defaultPermissioncategory()
     {
-        return ['main', 'permissioncategory', 'permission', 'role', 'user', 'category', 'subcategory','option'];
+        return ['main', 'permissioncategory', 'permission', 'role', 'user', 'category', 'subcategory','option','localization'];
     }
     private function defaultOption()
     {

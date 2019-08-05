@@ -18,7 +18,7 @@
                         <div class="col-md-5 align-self-center">
                             <h3 class="text-themecolor">localization</h3>
                             <ol class="breadcrumb">
-                                <a class="btn btn-info" href="{{ route('Admin.localization.test') }}">Show</a>
+
                                     <li class="breadcrumb-item"><a href="{{ route('Admin.home') }}">Home</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('Admin.localization.index') }}">Management localization</a></li>
                             </ol>

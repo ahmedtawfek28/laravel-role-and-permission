@@ -56,18 +56,6 @@ class LocalizationController extends Controller
 
         }
 
-        return redirect()->route('Admin.localization.index')
-            ->with('success', 'Localization created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Localization  $localization
-     * @return \Illuminate\Http\Response
-     */
-    public function test()
-    {
         $myfile = fopen("../resources/lang/en/main.php", "w") or die("Unable to open file!");
 
         $localizations = Localization::orderBy('key')->get();
@@ -83,16 +71,32 @@ class LocalizationController extends Controller
         $txt = "];\n";
         fwrite($myfile, $txt);
         fclose($myfile);
-        return redirect('Admin/localization')->with('success', 'Test successfully');
+//        ------------------------------------------------------------
+        $myfile = fopen("../resources/lang/ar/main.php", "w") or die("Unable to open file!");
 
+        $txt = "<?php\nreturn [\n";
+        fwrite($myfile, $txt);
+        foreach($localizations as $localization){
+
+            $txt = "'".$localization->key."' => '".$localization->value_ar."',\n";
+            fwrite($myfile, $txt);
+
+        }
+
+        $txt = "];\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+        return redirect()->route('Admin.localization.index')
+            ->with('success', 'Localization created successfully.');
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
      * @param  \App\Localization  $localization
      * @return \Illuminate\Http\Response
      */
+
     public function edit(Localization $localization)
     {
         return view('Admin.localizations.edit', compact('localization'));
@@ -115,6 +119,39 @@ class LocalizationController extends Controller
         ]);
 
         $localization->update($request->all());
+
+
+        $myfile = fopen("../resources/lang/en/main.php", "w") or die("Unable to open file!");
+
+        $localizations = Localization::orderBy('key')->get();
+        $txt = "<?php\nreturn [\n";
+        fwrite($myfile, $txt);
+        foreach($localizations as $localization){
+
+            $txt = "'".$localization->key."' => '".$localization->value_en."',\n";
+            fwrite($myfile, $txt);
+
+        }
+
+        $txt = "];\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+//        ------------------------------------------------------------
+        $myfile = fopen("../resources/lang/ar/main.php", "w") or die("Unable to open file!");
+
+        $localizations = Localization::orderBy('key')->get();
+        $txt = "<?php\nreturn [\n";
+        fwrite($myfile, $txt);
+        foreach($localizations as $localization){
+
+            $txt = "'".$localization->key."' => '".$localization->value_ar."',\n";
+            fwrite($myfile, $txt);
+
+        }
+
+        $txt = "];\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
         return redirect()->route('Admin.localization.index')
             ->with('success', 'localization updated successfully');
     }
@@ -129,7 +166,36 @@ class LocalizationController extends Controller
     {
         $localization->delete();
 
+        $myfile = fopen("../resources/lang/en/main.php", "w") or die("Unable to open file!");
 
+        $localizations = Localization::orderBy('key')->get();
+        $txt = "<?php\nreturn [\n";
+        fwrite($myfile, $txt);
+        foreach($localizations as $localization){
+
+            $txt = "'".$localization->key."' => '".$localization->value_en."',\n";
+            fwrite($myfile, $txt);
+
+        }
+
+        $txt = "];\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
+//        ------------------------------------------------------------
+        $myfile = fopen("../resources/lang/ar/main.php", "w") or die("Unable to open file!");
+
+        $txt = "<?php\nreturn [\n";
+        fwrite($myfile, $txt);
+        foreach($localizations as $localization){
+
+            $txt = "'".$localization->key."' => '".$localization->value_ar."',\n";
+            fwrite($myfile, $txt);
+
+        }
+
+        $txt = "];\n";
+        fwrite($myfile, $txt);
+        fclose($myfile);
         return redirect()->route('Admin.localization.index')
             ->with('success', 'localization deleted successfully');
     }

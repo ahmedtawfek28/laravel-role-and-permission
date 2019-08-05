@@ -1,10 +1,10 @@
 <?php
 return [
-'aboutus' => 'About us',
+'aboutus' => 'About Us',
 'contactus' => 'Contact Us',
 'firstname' => 'First Name',
-'home' => 'Home Page',
-'lastname' => 'Last Name111',
+'homepage' => 'Home',
+'lastname' => 'Last Name',
 'middlename' => 'Middle Name',
-'werewr' => 'werewr',
+'test' => 'Test',
 ];

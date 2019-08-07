@@ -1,10 +1,10 @@
 <?php
 return [
-'aboutus' => 'عن الموقع',
-'contactus' => 'للتواصل معنا',
+'aboutus' => 'عن البرنامج',
+'contactus' => 'تواصل معنا',
 'firstname' => 'الاسم الاول',
-'homepage' => 'الصفحة الرئيسية',
-'lastname' => 'أسم العائلة',
+'homepage' => 'الرئيسية',
+'lastname' => 'اسم العائلة',
 'middlename' => 'الاسم الاوسط',
 'test' => 'اختبار',
 ];

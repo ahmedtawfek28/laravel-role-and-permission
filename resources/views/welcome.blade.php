@@ -82,13 +82,6 @@
 
 
     <div class="content">
-        <h3> {{ trans('main.homepage') }}</h3>
-        <h3>{{ trans('main.aboutus') }}</h3>
-        <h3>{{ trans('main.test') }}</h3>
-        <h3> {{ trans('main.middlename') }}</h3>
-        <h3> {{ trans('main.firstname') }} </h3>
-        <h3> {{ trans('main.contactus') }} </h3>
-        <br>
         <div class="title m-b-md">
             @if(app()->getLocale()=="en")
                 {{ option('website_name_en') }}
@@ -96,16 +89,16 @@
                 {{ option('website_name_ar') }}
             @endif
         </div>
+        <h3> {{ trans('main.homepage') }}</h3>
+        <h3>{{ trans('main.aboutus') }}</h3>
+        <h3>{{ trans('main.lastname') }}</h3>
+        <h3> {{ trans('main.middlename') }}</h3>
+        <h3> {{ trans('main.firstname') }} </h3>
+        <h3> {{ trans('main.contactus') }} </h3>
+        <br>
 
-        <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://blog.laravel.com">Blog</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
-        </div>
+
+
     </div>
 </div>
 </body>

@@ -16,8 +16,8 @@ class CreateLocalizationsTable extends Migration
         Schema::create('localizations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('key')->unique();
-            $table->text('value_en');
-            $table->text('value_ar');
+            $table->text('value_en')->nullable();
+            $table->text('value_ar')->nullable();
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use App\Admin;
 use App\Customer;
 use App\Post;
 use App\Option;
+use App\Localization;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,12 +25,40 @@ class DatabaseSeeder extends Seeder
             $this->command->warn("Data deleted, starting from fresh database.");
         }
 
-        // Seed the default permissions
-        $options =$this->defaultOption();
-        $permissions = $this->defaultPermissions();
+
+        // Seed the default localization
+        $options = [
+            [ 'key' => 'website_name_ar','value'=>'تجريبي'],
+            [ 'key' => 'website_name_en','value'=>'Demo'],
+            [ 'key' => 'logo_image'],
+            [ 'key' => 'facebook',],
+            [ 'key' => 'twitter'],
+            [ 'key' => 'google'],
+
+
+        ];
+
         foreach ($options as $option) {
-            Option::firstOrCreate(['key' => $option],['value' => $option]);
+            Option::create($option);
         }
+        // Seed the default localization
+        $localizations = [
+            [ 'key' => 'homepage','value_en'=>'Home','value_ar'=>'الرئيسية',],
+            [ 'key' => 'aboutus','value_en'=>'About Us','value_ar'=>'عن البرنامج',],
+            [ 'key' => 'test','value_en'=>'Testing','value_ar'=>'اختبار',],
+            [ 'key' => 'middlename','value_en'=>'Middle Name','value_ar'=>'الاسم الاوسط',],
+            [ 'key' => 'firstname','value_en'=>'First Name','value_ar'=>'الاسم الاول',],
+            [ 'key' => 'contactus','value_en'=>'Contact Us','value_ar'=>'تواصل معنا',],
+            [ 'key' => 'lastname','value_en'=>'Last Name','value_ar'=>'اسم العائلة',],
+
+        ];
+
+        foreach ($localizations as $localization) {
+            Localization::create($localization);
+        }
+        // Seed the default permissions
+        $permissions = $this->defaultPermissions();
+
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
@@ -105,9 +134,6 @@ class DatabaseSeeder extends Seeder
     {
         return ['main', 'permissioncategory', 'permission', 'role', 'user', 'category', 'subcategory','option','localization'];
     }
-    private function defaultOption()
-    {
-        return  ['website_name_ar','website_name_en','logo-image','facebook','twitter','google','about_us','contact_us'];
-    }
+
 
 }

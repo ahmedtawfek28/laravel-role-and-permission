@@ -6,5 +6,5 @@ return [
 'homepage' => 'Home',
 'lastname' => 'Last Name',
 'middlename' => 'Middle Name',
-'test' => 'Test',
+'test' => 'Testing',
 ];

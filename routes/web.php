@@ -15,7 +15,9 @@ Route::get('/{locale}', function ($locale) {
     App::setLocale($locale);
     return view('welcome');
 });
-
+Route::get('/', function () {
+    return redirect('/en');
+});
 Route::get('/500', function () {
     return view('page500');
 })->name('page500');

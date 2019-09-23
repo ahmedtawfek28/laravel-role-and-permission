@@ -69,7 +69,8 @@
     <div class="top-right links">
 
         <li><a class="nav-link" href="{{ route('admin.login') }}">{{ __('Admin Login') }}</a></li>
-        <li><a class="nav-link" href="{{ route('customer.login') }}">{{ __('Customer Login') }}</a></li>
+        <li><a class="nav-link" href="{{ route('teacher.login') }}">{{ __('Teacher Login') }}</a></li>
+        <li><a class="nav-link" href="{{ route('student.login') }}">{{ __('Student Login') }}</a></li>
 
     </div>
 

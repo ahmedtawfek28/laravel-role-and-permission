@@ -17,22 +17,62 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard = "customer")->check() && !Auth::guard($guard = "admin")->check()) {
-            if ($request->path() == "admin/login") {
+        $Admin = Auth::guard($guard = "admin")->check();
+        $Student = Auth::guard($guard = "student")->check();
+        $Teacher = Auth::guard($guard = "teacher")->check();
+
+        if ($Admin && !$Student && !$Teacher) {
+            if ($request->path() == "student/login") {
                 return $next($request);
-            } else
-                return redirect('/customer/home');
-        } elseif (Auth::guard($guard = "admin")->check() && !Auth::guard($guard = "customer")->check()) {
-            if ($request->path() == "customer/login") {
+            } elseif ($request->path() == "teacher/login") {
                 return $next($request);
             } else
                 return redirect('/Admin/dashboard');
-        } elseif (Auth::guard($guard = "admin")->check() && Auth::guard($guard = "customer")->check()) {
-            if ($request->path() == "customer/login") {
-                return redirect('/customer/home');
+        } elseif (!$Admin && $Student && !$Teacher) {
+            if ($request->path() == "admin/login") {
+                return $next($request);
+            } elseif ($request->path() == "teacher/login") {
+                return $next($request);
+            } else
+                return redirect('/student/home');
+        } elseif (!$Admin && !$Student && $Teacher) {
+            if ($request->path() == "admin/login") {
+                return $next($request);
+            } elseif ($request->path() == "student/login") {
+                return $next($request);
+            } else
+                return redirect('/teacher/home');
+        } elseif ($Admin && $Student && !$Teacher) {
+            if ($request->path() == "admin/login") {
+                return redirect('/Admin/dashboard');
+            } elseif ($request->path() == "student/login") {
+                return redirect('/student/home');
+            } else
+                return $next($request);
+        } elseif ($Admin && !$Student && $Teacher) {
+            if ($request->path() == "admin/login") {
+                return redirect('/Admin/dashboard');
+            } elseif ($request->path() == "teacher/login") {
+                return redirect('/teacher/home');
+            } else
+                return $next($request);
+        } elseif (!$Admin && $Student && $Teacher) {
+            if ($request->path() == "student/login") {
+                return redirect('/student/home');
+            } elseif ($request->path() == "teacher/login") {
+                return redirect('/teacher/home');
+            } else
+                return $next($request);
+        } elseif ($Admin && $Student && $Teacher) {
+            if ($request->path() == "student/login") {
+                return redirect('/student/home');
+            } elseif ($request->path() == "teacher/login") {
+                return redirect('/teacher/home');
             } else
                 return redirect('/Admin/dashboard');
         }
+        
         return $next($request);
     }
+
 }

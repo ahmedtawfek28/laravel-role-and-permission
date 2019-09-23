@@ -2,7 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 use App\Admin;
-use App\Customer;
+use App\Student;
+use App\Teacher;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -26,10 +27,19 @@ $factory->define(Admin::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
-$factory->define(Customer::class, function (Faker $faker) {
+$factory->define(Student::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => 'user@user.com',
+        'email' => 'student@student.com',
+        'email_verified_at' => now(),
+        'password' => '$2y$10$LEQ4VQSvI8ZLN1pVn99p3ucpSye0fRmPo3vMe4g6MO10iIVeGLcZS', // password
+        'remember_token' => Str::random(10),
+    ];
+});
+$factory->define(Teacher::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => 'teacher@teacher.com',
         'email_verified_at' => now(),
         'password' => '$2y$10$LEQ4VQSvI8ZLN1pVn99p3ucpSye0fRmPo3vMe4g6MO10iIVeGLcZS', // password
         'remember_token' => Str::random(10),

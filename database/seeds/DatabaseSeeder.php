@@ -5,7 +5,8 @@ use App\Permission;
 use App\Permissioncategory;
 use App\Role;
 use App\Admin;
-use App\Customer;
+use App\Student;
+use App\Teacher;
 use App\Post;
 use App\Option;
 use App\Localization;
@@ -28,8 +29,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed the default localization
         $options = [
-            [ 'key' => 'website_name_ar','value'=>'تجريبي'],
-            [ 'key' => 'website_name_en','value'=>'Demo'],
+            [ 'key' => 'website_name_ar','value'=>'نظام إدارة الكلية'],
+            [ 'key' => 'website_name_en','value'=>'College Management System'],
             [ 'key' => 'logo_image'],
             [ 'key' => 'facebook',],
             [ 'key' => 'twitter'],
@@ -114,7 +115,8 @@ class DatabaseSeeder extends Seeder
     private function createUser($role)
     {
         $user = factory(Admin::class)->create();
-        factory(Customer::class)->create();
+        factory(Teacher::class)->create();
+        factory(Student::class)->create();
         $user->assignRole($role->name);
 
         if ($role->name == 'Admin') {

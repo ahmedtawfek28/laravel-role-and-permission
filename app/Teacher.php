@@ -9,7 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 class Teacher extends Authenticatable
 {
     use Notifiable;
-    use HasRoles;
+//    use HasRoles;
 
     /**
      * The attributes that are mass assignable.

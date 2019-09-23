@@ -52,18 +52,35 @@ Route::group(['as' => 'Admin.', 'prefix' => 'Admin', 'namespace' => 'Admin', 'mi
 
 
 /**
- * customer login route
+ * teacher login route
  */
-Route::get('/customer/login', 'Auth\CustomerLoginController@showLoginForm')->name('customer.login');
-Route::post('/customer/login', 'Auth\CustomerLoginController@login')->name('customer.login.post');
-Route::post('/customer/logout', 'Auth\CustomerLoginController@logout')->name('customer.logout');
+Route::get('/teacher/login', 'Auth\TeacherLoginController@showLoginForm')->name('teacher.login');
+Route::post('/teacher/login', 'Auth\TeacherLoginController@login')->name('teacher.login.post');
+Route::post('/teacher/logout', 'Auth\TeacherLoginController@logout')->name('teacher.logout');
 
 
 /**
- * route only for customer profile
+ * route only for teacher profile
  */
-Route::group(['middleware'=>'customer'], function() {
+Route::group(['middleware'=>'teacher'], function() {
 
-    Route::get('/customer/home', 'Customer\HomeController@index');
+    Route::get('/teacher/home', 'Teacher\HomeController@index');
+
+});
+
+/**
+ * student login route
+ */
+Route::get('/student/login', 'Auth\StudentLoginController@showLoginForm')->name('student.login');
+Route::post('/student/login', 'Auth\StudentLoginController@login')->name('student.login.post');
+Route::post('/student/logout', 'Auth\StudentLoginController@logout')->name('student.logout');
+
+
+/**
+ * route only for teacher profile
+ */
+Route::group(['middleware'=>'student'], function() {
+
+    Route::get('/student/home', 'Student\HomeController@index');
 
 });

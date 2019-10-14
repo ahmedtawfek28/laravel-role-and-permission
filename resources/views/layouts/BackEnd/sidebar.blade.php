@@ -126,7 +126,18 @@
                             </ul>
                         </li>
                     @endcan
+                    @can('adminlocalization-list')
+                        <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
+                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">Admin Localization</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                @can('adminlocalization-create')
 
+                                    <li>{!! Html::linkRoute('Admin.adminlocalization.create','Add Admin Localization') !!}</li>
+                                @endcan
+                                <li>{!! Html::linkRoute('Admin.adminlocalization.index','Admin Localization') !!}</li>
+                            </ul>
+                        </li>
+                    @endcan
                 @endcan
                 <li class="nav-small-cap">--- Logout</li>
                 <li>

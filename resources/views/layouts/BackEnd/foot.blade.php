@@ -9,11 +9,20 @@
     <!-- slimscrollbar scrollbar JavaScript -->
     {!! Html::script('BackEnd/assets/node_modules/ps/perfect-scrollbar.jquery.min.js') !!}
     <!--Wave Effects -->
-    {!! Html::script('BackEnd/main/js/waves.js') !!}
-    {!! Html::script('BackEnd/main/js/sidebarmenu.js') !!}
-    <!--Custom JavaScript -->
-    {!! Html::script('BackEnd/main/js/custom.min.js') !!}
-    
+    @if(app()->getLocale()=="en")
+        {!! Html::script('BackEnd/main/js/waves.js') !!}
+        {!! Html::script('BackEnd/main/js/sidebarmenu.js') !!}
+        <!--Custom JavaScript -->
+        {!! Html::script('BackEnd/main/js/custom.min.js') !!}
+        {!! Html::script('BackEnd/main/js/dashboard1.js') !!}
+    @else
+        {!! Html::script('BackEnd/main-ar/js/waves.js') !!}
+        {!! Html::script('BackEnd/main-ar/js/sidebarmenu.js') !!}
+        <!--Custom JavaScript -->
+        {!! Html::script('BackEnd/main-ar/js/custom.min.js') !!}
+        {!! Html::script('BackEnd/main-ar/js/dashboard1.js') !!}
+    @endif
+
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
@@ -26,7 +35,7 @@
     <!-- Popup message jquery -->
     {!! Html::script('BackEnd/assets/node_modules/toast-master/js/jquery.toast.js') !!}
     <!-- Chart JS -->
-    {!! Html::script('BackEnd/main/js/dashboard1.js') !!}
+
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->

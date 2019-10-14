@@ -164,6 +164,7 @@ class LocalizationController extends Controller
      */
     public function destroy(Localization $localization)
     {
+        dd($localization->id);
         $localization->delete();
 
         $myfile = fopen("../resources/lang/en/main.php", "w") or die("Unable to open file!");

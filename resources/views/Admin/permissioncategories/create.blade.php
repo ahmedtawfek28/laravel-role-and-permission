@@ -17,7 +17,7 @@
                     <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('Admin.home') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('Admin.permissioncategories.index') }}">Permissioncategory</a></li>
-                        <li class="breadcrumb-item active"><a href="{{ route('Admin.Admin.permissioncategories.create') }}">Create Permissioncategory</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('Admin.permissioncategories.create') }}">Create Permissioncategory</a></li>
                     </ol>
                 </div>
                 <div class="">

@@ -1,5 +1,11 @@
+
 <!DOCTYPE html>
-<html lang="en">
+@if(app()->getLocale()=="en")
+    <html lang="en">
+@else
+    <html lang="en" dir="rtl">
+@endif
+
 @include('layouts.BackEnd.head')
 @yield('css')
 

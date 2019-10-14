@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Laravel</title>
+    @if(!strstr(Request::path(),'en')&&!strstr(Request::path(),'ar'))
+        <meta http-equiv="refresh" content="0; url = {{url("en".Request::path())}}"/>
+@endif
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     <!-- Styles -->
@@ -96,7 +99,6 @@
         <h3> {{ trans('main.firstname') }} </h3>
         <h3> {{ trans('main.contactus') }} </h3>
         <br>
-
 
 
     </div>

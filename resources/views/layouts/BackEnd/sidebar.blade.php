@@ -7,20 +7,20 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="nav-small-cap">--- PERSONAL</li>
+                <li class="nav-small-cap">--- {{ trans('admin.PERSONAL') }}</li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('Admin.home') }}" aria-expanded="false"><i
                             class="icon-Car-Wheel">
                         </i><span class="hide-menu">
-                                     Dashboard
+                                    {{ trans('admin.dashboard') }}
 
                         </span></a>
                 </li>
                 @can('main-userManagement')
-                    <li class="nav-small-cap">--- User Management</li>
+                    <li class="nav-small-cap">--- {{ trans('admin.usermanegment') }}</li>
                     @can('permissioncategory-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Lock-2"></i><span class="hide-menu">Permissioncategory</span></a>
+                                    class=" icon-Lock-2"></i><span class="hide-menu">{{ trans('admin.permissioncategory') }}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('permissioncategory-create')
                                     <li>{!! Html::linkRoute('Admin.permissioncategories.create','Add Permissioncategory') !!}</li>
@@ -31,7 +31,7 @@
                     @endcan
                     @can('permission-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Lock-2"></i><span class="hide-menu">Permission</span></a>
+                                    class=" icon-Lock-2"></i><span class="hide-menu">{{ trans('admin.permission') }}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('permission-create')
                                     <li>{!! Html::linkRoute('Admin.permissions.create','Add Permission') !!}</li>
@@ -43,7 +43,7 @@
                     @can('role-list')
 
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class="icon-Lock-User"></i><span class="hide-menu">Role</span></a>
+                                    class="icon-Lock-User"></i><span class="hide-menu">{{ trans('admin.role') }}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('role-create')
                                     <li>{!! Html::linkRoute('Admin.roles.create','Add Role') !!}</li>
@@ -55,7 +55,7 @@
                     @can('user-create')
 
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Administrator"></i><span class="hide-menu">User</span></a>
+                                    class=" icon-Administrator"></i><span class="hide-menu">{{ trans('admin.user') }}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('user-create')
                                     <li>{!! Html::linkRoute('Admin.users.create','Add User') !!}</li>
@@ -66,10 +66,10 @@
                     @endcan
                 @endcan
                 @can('main-dataManagement')
-                    <li class="nav-small-cap">--- Data Management</li>
+                    <li class="nav-small-cap">--- {{ trans('admin.datamanagement') }}</li>
                     @can('category-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">Category</span></a>
+                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">{{ trans('admin.category') }}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('category-create')
 
@@ -81,7 +81,7 @@
                     @endcan
                     @can('subcategory-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class="icon-Folder-Open"></i><span class="hide-menu">SubCategory</span></a>
+                                    class="icon-Folder-Open"></i><span class="hide-menu">{{ trans('admin.subcategory') }}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('subcategory-create')
 
@@ -93,18 +93,18 @@
                     @endcan
                 @endcan
                 @can('main-site')
-                    <li class="nav-small-cap">--- Site Data</li>
+                    <li class="nav-small-cap">---{{ trans('admin.sitedata')}}</li>
                     <li>
                     <a class="waves-effect waves-dark" href="{{ route('Admin.websetting.index') }}" aria-expanded="false"><i
                             class="icon-Data-Settings">
                         </i><span class="hide-menu">
-                                     Settings
+                                     {{ trans('admin.settings')}}
 
                         </span></a>
                     </li>
                     @can('option-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">Option</span></a>
+                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">{{ trans('admin.option')}}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('option-create')
 
@@ -116,7 +116,7 @@
                     @endcan
                     @can('localization-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">Localization</span></a>
+                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">{{ trans('admin.localization')}}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('localization-create')
 
@@ -128,7 +128,7 @@
                     @endcan
                     @can('adminlocalization-list')
                         <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i
-                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">Admin Localization</span></a>
+                                    class=" icon-Folder-Organizing"></i><span class="hide-menu">{{ trans('admin.adminlocalization')}}</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 @can('adminlocalization-create')
 
@@ -139,14 +139,14 @@
                         </li>
                     @endcan
                 @endcan
-                <li class="nav-small-cap">--- Logout</li>
+                <li class="nav-small-cap">--- {{ trans('admin.logout')}}</li>
                 <li>
                     <a class="waves-effect waves-dark" href="{{ route('admin.logout') }}" aria-expanded="false" onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
 
                         <i class="mdi mdi-logout">
                         </i><span class="hide-menu">
-                                     Logout
+                                    {{ trans('admin.logout')}}
 
                         </span></a>
                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">

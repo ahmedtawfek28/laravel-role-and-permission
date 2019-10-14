@@ -1,5 +1,20 @@
 <?php
 return [
-'klonia55' => 'asdasd',
-'Test1' => 'ayhaga',
+'adminlocalization' => 'Admin loc',
+'category' => 'Category',
+'dashboard' => 'Dashboard',
+'datamanagement' => 'Data Management',
+'homepage' => 'Home',
+'localization' => 'Localization',
+'logout' => 'Logout',
+'option' => 'Options',
+'permission' => 'Permission',
+'permissioncategory' => 'Permission Category',
+'PERSONAL' => 'Primary',
+'role' => 'Role',
+'settings' => 'Settings',
+'sitedata' => 'Site Data',
+'subcategory' => 'Sub Category',
+'user' => 'User',
+'usermanegment' => 'User Manegment',
 ];

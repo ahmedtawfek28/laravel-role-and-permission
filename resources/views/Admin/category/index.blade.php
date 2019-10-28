@@ -143,8 +143,9 @@
                         var details_en = button.data('mydetails_en')
                         var id = button.data('myid')
                         var modal = $(this)
-                        document.getElementById('imageBox').src = "http://127.0.0.1:8000/app/public/category/" + image;
-                        document.getElementById('imageBox0').src = "http://127.0.0.1:8000/app/public/category/" + image;
+                        var url='{{ env('APP_URL') }}'
+                        document.getElementById('imageBox').src = url+"/app/public/category/" + image;
+                        document.getElementById('imageBox0').src = url+"/app/public/category/" + image;
                         modal.find('.modal-body #title_ar').val(title_ar);
                         modal.find('.modal-body #title_en').val(title_en);
                         modal.find('.modal-body #subcategorytitle_ar').val(subcategorytitle_ar);
